@@ -6,43 +6,7 @@ class MyScene extends CGFscene {
     constructor() {
         super();
     }
-    setBlue()
-    {
-        this.setAmbient(0.2, 0.4, 0.8, 1.0);
-        this.setDiffuse(0.0, 0.612, 1.0, 1.0);
-        this.setSpecular(0.2, 0.4, 0.8, 1.0);
-        this.setShininess(10.0);
-    }
-    setGreen() {
-        this.setAmbient(0.2, 0.4, 0.8, 1.0);
-        this.setDiffuse(0.0, 1.0, 0.0, 1.0);
-        this.setSpecular(0.2, 0.4, 0.8, 1.0);
-        this.setShininess(10.0);
-    }
-    setPink() {
-        this.setAmbient(0.2, 0.4, 0.8, 1.0);
-        this.setDiffuse(1.0, 0.612, 0.824, 1.0);
-        this.setSpecular(0.2, 0.4, 0.8, 1.0);
-        this.setShininess(10.0);
-    }
-    setPurple() {
-        this.setAmbient(0.2, 0.4, 0.8, 1.0);
-        this.setDiffuse(0.667, 0.31, 0.761, 1.0);
-        this.setSpecular(0.2, 0.4, 0.8, 1.0);
-        this.setShininess(10.0);
-    }
-    setRed() {
-        this.setAmbient(0.2, 0.4, 0.8, 1.0);
-        this.setDiffuse(1.0, 0.078, 0.078, 1.0);
-        this.setSpecular(0.2, 0.4, 0.8, 1.0);
-        this.setShininess(10.0);
-    }
-    setYellow() {
-        this.setAmbient(0.2, 0.4, 0.8, 1.0);
-        this.setDiffuse(1.0, 1.0, 0.0, 1.0);
-        this.setSpecular(0.2, 0.4, 0.8, 1.0);
-        this.setShininess(10.0);
-    }
+
     init(application) {
         super.init(application);
         this.initCameras();
@@ -58,17 +22,16 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.diamond = new MyDiamond(this);
-        this.triangle = new MyTriangle(this);
-        this.parallelogram = new MyParallelogram(this);
-
+        this.tangram = new MyTangram(this);
         
+        //Transformation methods
 
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayDiamond = true;
         this.displayTriangle = true;
         this.displayParallelogram = true;
+        this.displayTangram = true;
         this.scaleFactor = 1;
     }
     initLights() {
@@ -86,6 +49,48 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
+    setGreen() {
+        this.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.setDiffuse(0, 1, 0, 1.0);
+        this.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.setShininess(10.0);
+    }
+    setRed() {
+        this.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.setDiffuse(1.0, 0.078, 0.078, 1.0);
+        this.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.setShininess(10.0);
+    }
+    setPink() {
+        this.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.setDiffuse(1.0, 0.612, 0.824, 1.0);
+        this.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.setShininess(10.0);
+    }
+    setOrange() {
+        this.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.setDiffuse(1, 0.549, 0, 1.0);
+        this.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.setShininess(10.0);
+    }
+    setBlue() {
+        this.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.setDiffuse(0.0, 0.612, 1.0, 1.0);
+        this.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.setShininess(10.0);
+    }
+    setYellow(){
+        this.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.setDiffuse(1.0, 1.0, 0.0, 1.0);
+        this.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.setShininess(10.0);
+    }
+    setPurple(){
+        this.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.setDiffuse(0.667, 0.31, 0.761, 1.0);
+        this.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.setShininess(10.0);
+    }
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene
@@ -96,11 +101,10 @@ class MyScene extends CGFscene {
         this.loadIdentity();
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
-        
+        //this.translate(x, y, z)
         // Draw axis
         if (this.displayAxis)
-            this.axis.display();
-        
+        this.axis.display();
         this.setDefaultAppearance();
 
         var sca = [this.scaleFactor, 0.0, 0.0, 0.0,
@@ -109,19 +113,16 @@ class MyScene extends CGFscene {
                     0.0, 0.0, 0.0, 1.0];
 
         this.multMatrix(sca);
-
+        
         // ---- BEGIN Primitive drawing section
-        if(this.displayDiamond) {
-            this.setGreen();
-            this.diamond.display();
-        }
-        if(this.displayTriangle) {
-            this.setBlue();
-            this.triangle.display();
-        }
-        if(this.displayParallelogram)
-            this.parallelogram.display();
 
+
+
+
+        if(this.displayTangram)
+        this.tangram.display();
+
+        
         // ---- END Primitive drawing section
     }
 }
