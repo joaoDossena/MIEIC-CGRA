@@ -9,6 +9,7 @@ class MyCube extends CGFObject {
         this.side4Diamond = new MyDiamond(scene);
 	}
 	display() {
-		
+		this.scene.pushMatrix();
+		this.scene.topDiamond.display();
 	}
 }

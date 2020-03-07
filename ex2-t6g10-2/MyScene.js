@@ -22,7 +22,7 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.tangram = new MyTangram(this);
+        this.cube = new MyCube(this);
         
         //Transformation methods
 
@@ -31,7 +31,7 @@ class MyScene extends CGFscene {
         this.displayDiamond = true;
         this.displayTriangle = true;
         this.displayParallelogram = true;
-        this.displayTangram = true;
+        this.displayCube = true;
         this.scaleFactor = 1;
     }
     initLights() {
@@ -119,8 +119,8 @@ class MyScene extends CGFscene {
 
 
 
-        if(this.displayTangram)
-        this.tangram.display();
+        if(this.displayCube)
+        this.cube.display();
 
         
         // ---- END Primitive drawing section
