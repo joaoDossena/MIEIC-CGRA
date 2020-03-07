@@ -22,7 +22,9 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.cube = new MyCube(this);
+
+        this.Cube = new MyUnitCube(this);
+        this.Tangram = new MyTangram(this);
         
         //Transformation methods
 
@@ -31,7 +33,9 @@ class MyScene extends CGFscene {
         this.displayDiamond = true;
         this.displayTriangle = true;
         this.displayParallelogram = true;
-        this.displayCube = true;
+
+        this.displayUnitCube = true;
+        this.displayTangram = true;
         this.scaleFactor = 1;
     }
     initLights() {
@@ -115,12 +119,17 @@ class MyScene extends CGFscene {
         this.multMatrix(sca);
         
         // ---- BEGIN Primitive drawing section
+        
 
 
 
 
-        if(this.displayCube)
-        this.cube.display();
+        if(this.displayUnitCube)
+        this.Cube.display();
+        this.translate(1, 0, 3);
+        this.rotate(Math.PI*-90/180,1,0,0);
+        if(this.displayTangram)
+        this.Tangram.display();
 
         
         // ---- END Primitive drawing section

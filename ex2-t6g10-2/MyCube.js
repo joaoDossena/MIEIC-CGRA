@@ -1,15 +1,16 @@
-class MyCube extends CGFObject {
+/**
+ * MyCube
+ * @constructor
+ * @param scene - Reference to MyScene object
+*/
+class MyCube extends CGFobject {
 	constructor(scene) {
 		super(scene);
-        this.topDiamond = new MyDiamond(scene);
-        this.bottomDiamond = new MyDiamond(scene);
-        this.side1Diamond = new MyDiamond(scene);
-        this.side2Diamond = new MyDiamond(scene);
-        this.side3Diamond = new MyDiamond(scene);
-        this.side4Diamond = new MyDiamond(scene);
+        this.Square1 = new MyDiamond(scene);
 	}
 	display() {
-		this.scene.pushMatrix();
-		this.scene.topDiamond.display();
+        this.scene.pushMatrix();
+        this.Square1.display();
+        this.scene.popMatrix();
 	}
 }
