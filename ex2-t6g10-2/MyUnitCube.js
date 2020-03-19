@@ -38,8 +38,10 @@ class MyUnitCube extends CGFobject {
 
 		this.initGLBuffers();
 	}
-    /*display(){
+    /* display(){
 
+        this.scene.pushMatrix();
+        
         this.scene.pushMatrix();  
         this.scene.rotate(Math.PI*45/180,0, 0,1);
         this.scene.translate(0,0,0.5);
