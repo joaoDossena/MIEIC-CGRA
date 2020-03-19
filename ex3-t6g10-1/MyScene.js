@@ -25,11 +25,13 @@ class MyScene extends CGFscene {
         this.plane = new MyPlane(this, 5);
         this.cone = new MyCone(this, 3, 1);
         this.pyramid = new MyPyramid(this, 3, 1);
+        this.tangram = new MyTangram(this);
+        this.unitCube = new MyUnitCube(this);
         
-        this.objects = [this.plane, this.pyramid, this.cone];
+        this.objects = [this.plane, this.pyramid, this.cone, this.tangram, this.unitCube];
 
         // Labels and ID's for object selection on MyInterface
-        this.objectIDs = { 'Plane': 0 , 'Pyramid': 1, 'Cone': 2};
+        this.objectIDs = { 'Plane': 0 , 'Pyramid': 1, 'Cone': 2, 'Tangram': 3, 'Unit Cube': 4};
 
         //Other variables connected to MyInterface
         this.selectedObject = 0;
@@ -39,6 +41,48 @@ class MyScene extends CGFscene {
         this.objectComplexity = 0.5;
         this.scaleFactor = 2.0;
         this.ambientlightintensity = 0.3;
+    }
+    setGreen() {
+        this.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.setDiffuse(0, 1, 0, 1.0);
+        this.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.setShininess(10.0);
+    }
+    setRed() {
+        this.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.setDiffuse(1.0, 0.078, 0.078, 1.0);
+        this.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.setShininess(10.0);
+    }
+    setPink() {
+        this.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.setDiffuse(1.0, 0.612, 0.824, 1.0);
+        this.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.setShininess(10.0);
+    }
+    setOrange() {
+        this.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.setDiffuse(1, 0.549, 0, 1.0);
+        this.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.setShininess(10.0);
+    }
+    setBlue() {
+        this.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.setDiffuse(0.0, 0.612, 1.0, 1.0);
+        this.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.setShininess(10.0);
+    }
+    setYellow(){
+        this.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.setDiffuse(1.0, 1.0, 0.0, 1.0);
+        this.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.setShininess(10.0);
+    }
+    setPurple(){
+        this.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.setDiffuse(0.667, 0.31, 0.761, 1.0);
+        this.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.setShininess(10.0);
     }
     initLights() {
         this.setGlobalAmbientLight(0.3, 0.3, 0.3, 1.0);

@@ -9,6 +9,7 @@ class MyTangram extends CGFobject {
         this.Red_triangle = new MyTriangle(scene);
         this.Yellow_parallelogram = new MyParallelogram(scene);
     }
+
     display(){
         this.scene.pushMatrix();
         var trans_Green_diamond = [

@@ -10,6 +10,9 @@ serialInclude(['../lib/CGF.js',
                 'MyPyramid.js',
                 'MyTangram.js',
                 'MyUnitCube.js',
+                'MyDiamond.js',
+                'MyParallelogram.js',
+                'MyTriangle.js',
 
 main=function()
 {
