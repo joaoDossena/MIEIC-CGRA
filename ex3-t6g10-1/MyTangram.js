@@ -9,96 +9,50 @@ class MyTangram extends CGFobject {
         this.Red_triangle = new MyTriangle(scene);
         this.Yellow_parallelogram = new MyParallelogram(scene);
 
-        //this.initMaterials();
     }
-    /*
-    initMaterials() {
-        this.Green_diamondMat = new CGFappearance(this.scene);
-        this.Green_diamondMat.setAmbient(0.2, 0.4, 0.8, 1.0);
-        this.Green_diamondMat.setDiffuse(0, 1, 0, 1.0);
-        this.Green_diamondMat.setSpecular(0.2, 0.4, 0.8, 1.0);
-        this.Green_diamondMat.setShininess(10.0);
-        
-        this.Red_triangleMat = new CGFappearance(this.scene);
-        this.Red_triangleMat.setAmbient(0.2, 0.4, 0.8, 1.0);
-        this.Red_triangleMat.setDiffuse(1.0, 0.078, 0.078, 1.0);
-        this.Red_triangleMat.setSpecular(0.2, 0.4, 0.8, 1.0);
-        this.Red_triangleMat.setShininess(10.0);
-
-        this.Pink_triangleMat = new CGFappearance(this.scene);
-        this.Pink_triangleMat.setAmbient(0.2, 0.4, 0.8, 1.0);
-        this.Pink_triangleMat.setDiffuse(1.0, 0.612, 0.824, 1.0);
-        this.Pink_triangleMat.setSpecular(0.2, 0.4, 0.8, 1.0);
-        this.Pink_triangleMat.setShininess(10.0);
-    
-        this.Orange_triangleMat = new CGFappearance(this.scene);
-        this.Orange_triangleMat.setAmbient(0.2, 0.4, 0.8, 1.0);
-        this.Orange_triangleMat.setDiffuse(1, 0.549, 0, 1.0);
-        this.Orange_triangleMat.setSpecular(0.2, 0.4, 0.8, 1.0);
-        this.Orange_triangleMat.setShininess(10.0);
-        
-        this.Blue_triangleMat = new CGFappearance(this.scene);
-        this.Blue_triangleMat.setAmbient(0.2, 0.4, 0.8, 1.0);
-        this.Blue_triangleMat.setDiffuse(0.0, 0.612, 1.0, 1.0);
-        this.Blue_triangleMat.setSpecular(0.2, 0.4, 0.8, 1.0);
-        this.Blue_triangleMat.setShininess(10.0);
-
-        this.Yellow_parallelogramMat =new CGFappearance(this.scene);
-        this.Yellow_parallelogramMat.setAmbient(0.2, 0.4, 0.8, 1.0);
-        this.Yellow_parallelogramMat.setDiffuse(1.0, 1.0, 0.0, 1.0);
-        this.Yellow_parallelogramMat.setSpecular(0.2, 0.4, 0.8, 1.0);
-        this.Yellow_parallelogramMat.setShininess(10.0);
-        
-        this.Purple_triangleMat = new CGFappearance(this.scene);
-        this.Purple_triangleMat.setAmbient(0.2, 0.4, 0.8, 1.0);
-        this.Purple_triangleMat.setDiffuse(0.667, 0.31, 0.761, 1.0);
-        this.Purple_triangleMat.setSpecular(0.2, 0.4, 0.8, 1.0);
-        this.Purple_triangleMat.setShininess(10.0);
-        
-    }*/
     setGreen() {
-        this.scene.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.scene.setAmbient(0, 1, 0, 1.0);
         this.scene.setDiffuse(0, 1, 0, 1.0);
-        this.scene.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.scene.setSpecular(0, 1, 0, 1.0);
         this.scene.setShininess(10.0);
     }
     setRed() {
-        this.scene.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.scene.setAmbient(1.0, 0.078, 0.078, 1.0);
         this.scene.setDiffuse(1.0, 0.078, 0.078, 1.0);
-        this.scene.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.scene.setSpecular(1.0, 0.24, 0.24, 1.0);
         this.scene.setShininess(10.0);
     }
     setPink() {
-        this.scene.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.scene.setAmbient(1.0, 0.612, 0.824, 1.0);
         this.scene.setDiffuse(1.0, 0.612, 0.824, 1.0);
-        this.scene.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.scene.setSpecular(1.0, 1.0, 1.0, 1.0);
         this.scene.setShininess(10.0);
     }
     setOrange() {
-        this.scene.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.scene.setAmbient(1, 0.549, 0, 1.0);
         this.scene.setDiffuse(1, 0.549, 0, 1.0);
-        this.scene.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.scene.setSpecular(1, 1, 0, 1.0);
         this.scene.setShininess(10.0);
     }
     setBlue() {
-        this.scene.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.scene.setAmbient(0.0, 0.612, 1.0, 1.0);
         this.scene.setDiffuse(0.0, 0.612, 1.0, 1.0);
-        this.scene.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.scene.setSpecular(0.0, 1, 1, 1.0);
         this.scene.setShininess(10.0);
     }
     setYellow(){
-        this.scene.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.scene.setAmbient(1.0, 1.0, 0.0, 1.0);
         this.scene.setDiffuse(1.0, 1.0, 0.0, 1.0);
-        this.scene.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.scene.setSpecular(1, 1, 0, 1.0);
         this.scene.setShininess(10.0);
     }
     setPurple(){
-        this.scene.setAmbient(0.2, 0.4, 0.8, 1.0);
+        this.scene.setAmbient(0.667, 0.31, 0.761, 1.0);
         this.scene.setDiffuse(0.667, 0.31, 0.761, 1.0);
-        this.scene.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.scene.setSpecular(1, 1, 1, 1.0);
         this.scene.setShininess(10.0);
     }
-
+    
     display(){
         //      Green Diamond
         this.scene.pushMatrix();
@@ -108,9 +62,8 @@ class MyTangram extends CGFobject {
             0,0,1,0,
             0,-1,0,1
         ];       
-        this.scene.translate(0,-1,0);
-        this.setGreen();
-        //this.Green_diamondMat.apply()
+        this.scene.multMatrix(trans_Green_diamond);
+        this.scene.customMaterial.apply()
         this.Green_diamond.display();
         this.scene.popMatrix();
         
