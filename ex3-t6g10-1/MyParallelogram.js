@@ -14,6 +14,11 @@ class MyParallelogram extends CGFobject {
 			1, 1, 0,	//0
 			3, 1, 0,	//1
             2, 0, 0,	//2
+			0, 0, 0,    //3
+			
+			1, 1, 0,	//0
+			3, 1, 0,	//1
+            2, 0, 0,	//2
             0, 0, 0,    //3
 		];
 
@@ -25,6 +30,14 @@ class MyParallelogram extends CGFobject {
             0, 1, 2, 
 
 		];
+		var parallelogramVertices = 4;
+		this.normals = [];
+		for (var i = 0; i < parallelogramVertices; i += 1) {
+			this.normals.push(0, 0, 1);
+		}
+		for (var i = 0; i < parallelogramVertices; i += 1) {
+			this.normals.push(0, 0, -1);
+		}
 
 		//The defined indices (and corresponding vertices)
 		//will be read in groups of three to draw triangles
