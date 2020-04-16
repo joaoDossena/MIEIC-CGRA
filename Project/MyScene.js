@@ -6,6 +6,21 @@ class MyScene extends CGFscene {
     constructor() {
         super();
     }
+    checkKeys() {
+        var text = "Keys pressed: ";
+        var keysPressed = false;
+        // Check for key codes e.g. in https://keycode.info/
+        if (this.gui.isKeyPressed("KeyW")) {
+            text += " W ";
+            keysPressed = true;
+        }
+        if (this.gui.isKeyPressed("KeyS")) {
+            text += " S ";
+            keysPressed = true;
+        }
+        if (keysPressed)
+            console.log(text);
+    }
     init(application) {
         super.init(application);
         this.initCameras();
@@ -20,7 +35,7 @@ class MyScene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
 
         this.setUpdatePeriod(50);
-        
+
         this.enableTextures(true);
 
         //Initialize scene objects
@@ -49,7 +64,8 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
     // called periodically (as per setUpdatePeriod() in init())
-    update(t){
+    update(t) {
+        this.checkKeys();
         //To be done...
     }
 
@@ -63,7 +79,7 @@ class MyScene extends CGFscene {
         this.loadIdentity();
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
-        
+
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
