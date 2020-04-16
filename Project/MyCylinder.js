@@ -1,5 +1,4 @@
 class MyCylinder extends CGFobject {
-<<<<<<< HEAD
 	constructor(scene, slices) {
     	super(scene);
     	this.slices = slices;
