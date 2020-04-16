@@ -1,5 +1,5 @@
-class MyCylinder extends CGFObject {
-	constructor(scene, slices) {
+class MyCylinder extends CGFobject {
+	constructor(scene, slices){
     	super(scene);
     	this.longDivs = slices;
 
@@ -21,7 +21,8 @@ class MyCylinder extends CGFObject {
         	var y = 1;
         	var z = Math.sin(-theta);
         	this.vertices.push(x, y, z);
-        	this.normals.push(x, y, z);
+			this.normals.push(x, y, z);
+			theta += thetaInc;
     	}
 
         this.primitiveType = this.scene.gl.TRIANGLES;
