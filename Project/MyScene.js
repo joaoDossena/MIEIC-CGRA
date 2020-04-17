@@ -42,7 +42,7 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
-        this.cyclinder = new MyCylinder(this, 6);
+        this.cyclinder = new MyCylinder(this, 30);
 
         //------ Applied Material
         this.Material = new CGFappearance(this);
