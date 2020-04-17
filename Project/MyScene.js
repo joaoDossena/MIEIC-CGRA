@@ -43,6 +43,7 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
         this.cyclinder = new MyCylinder(this, 30);
+        this.cubeMap = new MyCubeMap(this);
 
         //------ Applied Material
         this.Material = new CGFappearance(this);
@@ -56,25 +57,47 @@ class MyScene extends CGFscene {
 
         //------ Textures
         this.texture1 = new CGFtexture(this, 'images/earth.jpg');
-        this.texture2 = new CGFtexture(this, 'images/cubemap.png');
         //-------
 
-        this.objects=[this.sphere,this.cyclinder];
-        this.textures = [this.texture1, this.texture2];
+        //------ Background Material
+        this.backgroundMaterial = new CGFappearance(this);
+        this.backgroundMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.backgroundMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.backgroundMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.backgroundMaterial.setShininess(10.0);
+        this.backgroundMaterial.loadTexture('images/cubemap.png');
+        this.backgroundMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
+        //----- Backgrounds
+        this.background1 = new CGFtexture(this, 'images/cubemap.png');
+        this.background2 = new CGFtexture(this, 'images/forrestMap.png');
+        this.background3 = new CGFtexture(this, 'images/spaceMap.png');
+
+        //-------
+        this.backgrounds = [this.background1, this.background2, this.background3];
+        this.backgroundIDs = {
+            'Sky': 0,
+            'forrest': 1,
+            'SpaceMap': 2,
+        };
+        //------
+        this.objects = [this.sphere, this.cyclinder];
+        this.textures = [this.texture1];
         this.objectIDs = {
             'Sphere': 0,
-            'Cylinder': 1
+            'Cylinder': 1,
         };
         this.textureIds = {
             'Earth': 0,
-            'Map': 1
         };
         //Objects connected to MyInterface
+        this.selectedBackground = 2;
         this.selectedTexture = 0;
         this.selectedObject = 0;
         this.wireframe = false;
-        this.displayAxis = true;
+        this.displayAxis = false;
         this.displayNormals = false;
+        this.displayBackground = false;
         this.scaleFactor = 1;
     }
     initLights() {
@@ -100,7 +123,7 @@ class MyScene extends CGFscene {
     }
 
     // called periodically (as per setUpdatePeriod() in init())
-    update(t){
+    update(t) {
         //this.checkKeys();
     }
 
@@ -118,11 +141,14 @@ class MyScene extends CGFscene {
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
-
+        if(this.displayBackground){
+            this.backgroundMaterial.setTexture(this.backgrounds[this.selectedBackground]);
+            this.cubeMap.display();
+        }
         this.setDefaultAppearance();
-        this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
+        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         // ---- BEGIN Primitive drawing section
-        
+
         this.Material.setTexture(this.texture1);
         this.Material.apply();
 
@@ -130,7 +156,7 @@ class MyScene extends CGFscene {
             this.objects[this.selectedObject].enableNormalViz();
         else
             this.objects[this.selectedObject].disableNormalViz();
-        
+
         this.objects[this.selectedObject].display();
 
         // ---- END Primitive drawing section
