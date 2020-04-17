@@ -43,6 +43,7 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
         this.cyclinder = new MyCylinder(this, 30);
+        this.vehicle = new MyVehicle(this);
         this.cubeMap = new MyCubeMap(this);
 
         //------ Applied Material
@@ -81,11 +82,12 @@ class MyScene extends CGFscene {
             'SpaceMap': 2,
         };
         //------
-        this.objects = [this.sphere, this.cyclinder];
+        this.objects = [this.sphere, this.cyclinder, this.vehicle];
         this.textures = [this.texture1];
         this.objectIDs = {
             'Sphere': 0,
             'Cylinder': 1,
+            'Vehicle': 2,
         };
         this.textureIds = {
             'Earth': 0,
