@@ -2,12 +2,11 @@
 * MyInterface
 * @constructor
 */
-/*
 class MyInterface extends CGFinterface {
     constructor() {
         super();
     }
-    initKeys(){
+    initKeys() {
         // create reference from the scene to the GUI
         this.scene.gui = this;
         // disable the processKeyboard function
@@ -39,40 +38,17 @@ class MyInterface extends CGFinterface {
 
         //Checkbox element in GUI
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
-        this.gui.add(this.scene, 'displayCylinder').name('Display Cylinder');
-        this.gui.add(this.scene, 'displaySphere').name('Display Sphere');
-        this.gui.add(this.scene, 'selectedTexture', this.scene.textureIds).name('Selected Texture').onChange(this.scene.updateAppliedTexture.bind(this.scene));
-        this.initKeys();
-        
-        return true;
-    }
-}*/
-
-
-
-class MyInterface extends CGFinterface {
-    constructor() {
-        super();
-    }
-
-    init(application) {
-        // call CGFinterface init
-        super.init(application);
-        // init GUI. For more information on the methods, check:
-        // http://workshop.chromeexperiments.com/examples/gui
-        this.gui = new dat.GUI();
-
-        var obj = this;
-
-        //Checkbox element in GUI
-        this.gui.add(this.scene, 'displayAxis').name('Display Axis');
         this.gui.add(this.scene, 'selectedObject', this.scene.objectIDs).name('SEL Object');
         this.gui.add(this.scene, 'selectedBackground', this.scene.backgroundIDs).name('SEL Background');
         this.gui.add(this.scene, 'displayNormals').name("Display Normals");
         this.gui.add(this.scene, 'displayBackground').name("Background");
         this.gui.add(this.scene, 'wireframe').onChange(this.scene.onWireframeChanged.bind(this.scene)).name('Enable Wire Frame');
-        this.gui.add(this.scene, 'scaleFactor', 1.0, 2.0, 0.1).name('Scale Factor');
+        this.gui.add(this.scene, 'scaleFactor', 0.5, 3.0, 0.1).name('Scale Factor');
+        this.gui.add(this.scene, 'speedFactor', 0.1, 3.0, 0.1).name('Speed Factor');
+
         //this.gui.add(this.scene, 'selectedTexture', this.scene.textureIDs).onChange(this.scene.updateAppliedTexture.bind(this.scene)).name('Selected Texture');
+        
+        this.initKeys();
         return true;
     }
 }

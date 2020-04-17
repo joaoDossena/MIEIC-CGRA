@@ -7,22 +7,39 @@ class MyScene extends CGFscene {
         super();
 
     }
-    /*
+    // Check for key codes e.g. in https://keycode.info/
     checkKeys() {
         var text = "Keys pressed: ";
         var keysPressed = false;
-        // Check for key codes e.g. in https://keycode.info/
         if (this.gui.isKeyPressed("KeyW")) {
             text += " W ";
+            this.vehicle.accelerate(0.1*this.speedFactor);
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyS")) {
             text += " S ";
+            this.vehicle.accelerate(-0.1*this.speedFactor);
+            keysPressed = true;
+        }
+        if (this.gui.isKeyPressed("KeyA")) {
+            text += " A ";
+            this.vehicle.turn([5]);
+            keysPressed = true;
+        }
+        if (this.gui.isKeyPressed("KeyD")) {
+            text += " D ";
+            this.vehicle.turn([-5]);
+            keysPressed = true;
+        }
+        if (this.gui.isKeyPressed("KeyR")) {
+            text += " R ";
+            this.vehicle.reset();
             keysPressed = true;
         }
         if (keysPressed)
             console.log(text);
-    }*/
+    }
+
     init(application) {
         super.init(application);
         this.initCameras();
@@ -52,7 +69,7 @@ class MyScene extends CGFscene {
         this.Material.setDiffuse(0.9, 0.9, 0.9, 1);
         this.Material.setSpecular(0.1, 0.1, 0.1, 1);
         this.Material.setShininess(10.0);
-        this.Material.loadTexture('images/earth.png');
+        this.Material.loadTexture('images/earth.jpg');
         this.Material.setTextureWrap('REPEAT', 'REPEAT');
         //------
 
@@ -93,14 +110,15 @@ class MyScene extends CGFscene {
             'Earth': 0,
         };
         //Objects connected to MyInterface
-        this.selectedBackground = 2;
+        this.selectedBackground = 0;
         this.selectedTexture = 0;
         this.selectedObject = 0;
         this.wireframe = false;
-        this.displayAxis = false;
+        this.displayAxis = true;
         this.displayNormals = false;
-        this.displayBackground = false;
+        this.displayBackground = true;
         this.scaleFactor = 1;
+        this.speedFactor = 0.1;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -126,7 +144,8 @@ class MyScene extends CGFscene {
 
     // called periodically (as per setUpdatePeriod() in init())
     update(t) {
-        //this.checkKeys();
+        this.checkKeys();
+        this.vehicle.update();
     }
 
     display() {
@@ -143,7 +162,7 @@ class MyScene extends CGFscene {
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
-        if(this.displayBackground){
+        if (this.displayBackground) {
             this.backgroundMaterial.setTexture(this.backgrounds[this.selectedBackground]);
             this.cubeMap.display();
         }
