@@ -5,7 +5,9 @@
 class MyScene extends CGFscene {
     constructor() {
         super();
+
     }
+    /*
     checkKeys() {
         var text = "Keys pressed: ";
         var keysPressed = false;
@@ -20,7 +22,7 @@ class MyScene extends CGFscene {
         }
         if (keysPressed)
             console.log(text);
-    }
+    }*/
     init(application) {
         super.init(application);
         this.initCameras();
@@ -35,18 +37,45 @@ class MyScene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
 
         this.setUpdatePeriod(50);
-
         this.enableTextures(true);
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.incompleteSphere = new MySphere(this, 16, 8);
-        this.cylinder = new MyCylinder(this, 8);
+        this.sphere = new MySphere(this, 16, 8);
+        this.cyclinder = new MyCylinder(this, 6);
 
+        //------ Applied Material
+        this.Material = new CGFappearance(this);
+        this.Material.setAmbient(0.1, 0.1, 0.1, 1);
+        this.Material.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.Material.setSpecular(0.1, 0.1, 0.1, 1);
+        this.Material.setShininess(10.0);
+        this.Material.loadTexture('images/earth.png');
+        this.Material.setTextureWrap('REPEAT', 'REPEAT');
+        //------
+
+        //------ Textures
+        this.texture1 = new CGFtexture(this, 'images/earth.jpg');
+        this.texture2 = new CGFtexture(this, 'images/cubemap.png');
+        //-------
+
+        this.objects=[this.sphere,this.cyclinder];
+        this.textures = [this.texture1, this.texture2];
+        this.objectIDs = {
+            'Sphere': 0,
+            'Cylinder': 1
+        };
+        this.textureIds = {
+            'Earth': 0,
+            'Map': 1
+        };
         //Objects connected to MyInterface
+        this.selectedTexture = 0;
+        this.selectedObject = 0;
+        this.wireframe = false;
         this.displayAxis = true;
-        this.displaySphere = true;
-        this.displayCylinder = false;
+        this.displayNormals = false;
+        this.scaleFactor = 1;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -63,10 +92,16 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
+    onWireframeChanged(option) {
+        if (option)
+            this.objects[this.selectedObject].setLineMode();
+        else
+            this.objects[this.selectedObject].setFillMode();
+    }
+
     // called periodically (as per setUpdatePeriod() in init())
-    update(t) {
-        this.checkKeys();
-        //To be done...
+    update(t){
+        //this.checkKeys();
     }
 
     display() {
@@ -85,14 +120,19 @@ class MyScene extends CGFscene {
             this.axis.display();
 
         this.setDefaultAppearance();
-
+        this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
         // ---- BEGIN Primitive drawing section
+        
+        this.Material.setTexture(this.texture1);
+        this.Material.apply();
 
-        //This sphere does not have defined texture coordinates
-        if(this.displaySphere)
-            this.incompleteSphere.display();
-        //if(this.displayCylinder)
-            //this.cylinder.display();
+        if (this.displayNormals)
+            this.objects[this.selectedObject].enableNormalViz();
+        else
+            this.objects[this.selectedObject].disableNormalViz();
+        
+        this.objects[this.selectedObject].display();
+
         // ---- END Primitive drawing section
     }
 }

@@ -11,14 +11,16 @@ class MySphere extends CGFobject {
     this.longDivs = slices;
 
     this.initBuffers();
-  }
 
+  }
   /**
    * @method initBuffers
    * Initializes the sphere buffers
    * TODO: DEFINE TEXTURE COORDINATES
    */
+  
   initBuffers() {
+    
     this.vertices = [];
     this.indices = [];
     this.normals = [];
@@ -29,6 +31,10 @@ class MySphere extends CGFobject {
     var phiInc = Math.PI / this.latDivs;
     var thetaInc = (2 * Math.PI) / this.longDivs;
     var latVertices = this.longDivs + 1;
+    var currentT = 0;         //Vertical
+    var currentS = 0;         //Horizontal
+    var incrementT = 1/this.latDivs;
+    var incrementS = 1/this.longDivs;
 
     // build an all-around stack at a time, starting on "north pole" and proceeding "south"
     for (let latitude = 0; latitude <= this.latDivs; latitude++) {
@@ -37,6 +43,7 @@ class MySphere extends CGFobject {
 
       // in each stack, build all the slices around, starting on longitude 0
       theta = 0;
+      currentS = 0;
       for (let longitude = 0; longitude <= this.longDivs; longitude++) {
         //--- Vertices coordinates
         var x = Math.cos(theta) * sinPhi;
@@ -55,6 +62,7 @@ class MySphere extends CGFobject {
           this.indices.push( current + 1, current, next);
           this.indices.push( current + 1, next, next +1);
         }
+        
 
         //--- Normals
         // at each vertex, the direction of the normal is equal to 
@@ -65,15 +73,25 @@ class MySphere extends CGFobject {
         theta += thetaInc;
 
         //--- Texture Coordinates
-        // To be done... 
+        this.texCoords.push(currentS, currentT);
+        currentS += incrementS;
         // May need some additional code also in the beginning of the function.
         
       }
+      currentT += incrementT;
       phi += phiInc;
     }
-
-
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
   }
+  
+  setLineMode()
+  {
+    this.primitiveType=this.scene.gl.LINE_STRIP;
+  }
+
+  setFillMode() {
+    this.primitiveType=this.scene.gl.TRIANGLES;
+  }
+  
 }
