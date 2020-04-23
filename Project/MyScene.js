@@ -59,10 +59,11 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
-        this.cyclinder = new MyCylinder(this, 30);
+        this.cyclinder = new MyCylinder(this, 16, 8);
         this.vehicle = new MyVehicle(this);
         this.cubeMap = new MyCubeMap(this);
         this.terrain = new MyTerrain(this, 50);
+        this.gondola = new MyGondola(this, 16, 8);
 
         //------ Applied Material
         this.Material = new CGFappearance(this);
@@ -109,13 +110,14 @@ class MyScene extends CGFscene {
             'SpaceMap': 2,
         };
         //------
-        this.objects = [this.sphere, this.cyclinder, this.vehicle, this.terrain];
+        this.objects = [this.sphere, this.cyclinder, this.vehicle, this.gondola, this.terrain];
         this.textures = [this.texture1];
         this.objectIDs = {
             'Sphere': 0,
             'Cylinder': 1,
             'Vehicle': 2,
-            'Terrain': 3,
+            'Gondola': 3,
+            'Terrain': 4,
         };
         this.textureIds = {
             'Earth': 0,
@@ -189,7 +191,7 @@ class MyScene extends CGFscene {
         else
             this.objects[this.selectedObject].disableNormalViz();
         
-        if(this.selectedObject == 3){
+        if(this.selectedObject == 4){
             this.pushMatrix();
 			
 			this.scale(25, 25, 25);
