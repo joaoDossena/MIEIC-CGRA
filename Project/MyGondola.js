@@ -12,8 +12,8 @@ class MyGondola extends CGFobject
 	{
 		//Front Sphere:
 		this.scene.pushMatrix();
-		this.scale(0.5, 0.5, 0.5);
-		this.translate(0, -2, 2);
+		this.scene.scale(0.5, 0.5, 0.5);
+		this.scene.translate(0, -2, 2);
 		this.frontSphere.display();
 		this.scene.popMatrix();
 
@@ -27,8 +27,8 @@ class MyGondola extends CGFobject
 
 		//Front Sphere:
 		this.scene.pushMatrix();
-		this.scale(1, 1, 0.5);
-		this.translate(0, -2, -2);
+		this.scene.scale(1, 1, 0.5);
+		this.scene.translate(0, -2, -2);
 		this.backSphere.display();
 		this.scene.popMatrix();
 	}
