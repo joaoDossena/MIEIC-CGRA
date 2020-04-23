@@ -10,6 +10,7 @@ class MyCubeMap extends CGFobject {
         this.initMaterials();
     }
     initMaterials() {
+        this.overHead = 0.0036;
         this.frontFace.texCoords = [
             0.25, 0.67,
             0.50, 0.67,
@@ -17,34 +18,34 @@ class MyCubeMap extends CGFobject {
             0.50, 0.33,
         ];
         this.backFace.texCoords = [
-            0.75, 0.67,
-            1.00, 0.67,
-            0.75, 0.33,
-            1.00, 0.33,
+            0.75, 0.67- this.overHead,
+            1.00- this.overHead, 0.67- this.overHead,
+            0.75, 0.33 + this.overHead,
+            1.00- this.overHead, 0.33 + this.overHead,
         ];
         this.rightFace.texCoords = [
-            0.50, 0.67,
-            0.75, 0.67,
-            0.50, 0.33,
-            0.75, 0.33,
+            0.50, 0.67- this.overHead,
+            0.75, 0.67- this.overHead,
+            0.50, 0.33 + this.overHead,
+            0.75, 0.33 + this.overHead,
         ];
         this.leftFace.texCoords = [
-            0.00, 0.67,
-            0.25, 0.67,
-            0.00, 0.33,
-            0.25, 0.33,
+            0.00+ this.overHead, 0.67- this.overHead,
+            0.25, 0.67- this.overHead,
+            0.00+ this.overHead, 0.33 + this.overHead,
+            0.25, 0.33 + this.overHead,
         ];
         this.topFace.texCoords = [
-            0.25, 0.33,
-            0.50, 0.33,
-            0.25, 0.00,
-            0.50, 0.00,
+            0.25+ this.overHead, 0.33 ,
+            0.50- this.overHead, 0.33 ,
+            0.25+ this.overHead, 0.00 + this.overHead,
+            0.50- this.overHead, 0.00 + this.overHead,
         ];
         this.bottomFace.texCoords = [
-            0.25, 1.00,
-            0.50, 1.00,
-            0.25, 0.66,
-            0.50, 0.66,
+            0.25+ this.overHead, 1.00- this.overHead,
+            0.50- this.overHead, 1.00- this.overHead,
+            0.25+ this.overHead, 0.66,
+            0.50- this.overHead, 0.66,
         ];
         this.frontFace.updateTexCoordsGLBuffers();
         this.backFace.updateTexCoordsGLBuffers();
