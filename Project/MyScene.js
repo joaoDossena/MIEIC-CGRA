@@ -62,7 +62,7 @@ class MyScene extends CGFscene {
         this.cyclinder = new MyCylinder(this, 16, 8);
         this.vehicle = new MyVehicle(this);
         this.cubeMap = new MyCubeMap(this);
-        this.terrain = new MyTerrain(this, 50);
+        this.terrain = new MyTerrain(this, 20);
         this.gondola = new MyGondola(this, 16, 8);
 
         //------ Applied Material
@@ -80,11 +80,13 @@ class MyScene extends CGFscene {
         this.texture1 = new CGFtexture(this, 'images/earth.jpg');
         //-------
 
-		//this.terrainTexture = new CGFtexture(this, "textures/waterTex.jpg");
-		//this.terrainMap = new CGFtexture(this,"textures/waterMap.jpg");
+		this.terrainTexture = new CGFtexture(this, "textures/terrain.jpg");
+		this.terrainMap = new CGFtexture(this,"textures/heightmap.jpg");
         //------ Shaders
         this.terrainShader = new CGFshader(this.gl, "shaders/terrain.vert", "shaders/terrain.frag");
-        this.terrainShader.setUniformsValues({ uSampler2: 1 });
+        this.terrainShader.setUniformsValues({ uSampler3: 1 });
+        this.terrainShader.setUniformsValues({ uSampler4: 2 });
+
         //-------
 
         //------ Background Material
@@ -132,6 +134,14 @@ class MyScene extends CGFscene {
         this.displayBackground = true;
         this.scaleFactor = 1;
         this.speedFactor = 0.1;
+
+        // shader code panels references
+		this.shadersDiv = document.getElementById("shaders");
+		this.vShaderDiv = document.getElementById("vshader");
+		this.fShaderDiv = document.getElementById("fshader");
+
+		// force initial setup of shader code panels
+
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -154,6 +164,7 @@ class MyScene extends CGFscene {
         else
             this.objects[this.selectedObject].setFillMode();
     }
+    // Show/hide shader code
 
     // called periodically (as per setUpdatePeriod() in init())
     update(t) {
@@ -179,6 +190,7 @@ class MyScene extends CGFscene {
             this.backgroundMaterial.setTexture(this.backgrounds[this.selectedBackground]);
             this.cubeMap.display();
         }
+        
         this.setDefaultAppearance();
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         // ---- BEGIN Primitive drawing section
@@ -192,16 +204,30 @@ class MyScene extends CGFscene {
             this.objects[this.selectedObject].disableNormalViz();
         
         if(this.selectedObject == 4){
+            this.setActiveShader(this.terrainShader);
             this.pushMatrix();
-			
-			this.scale(25, 25, 25);
-			this.objects[3].display();
+            
+            this.terrainTexture.bind(1);
+            this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.REPEAT);
+            this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_T, this.gl.REPEAT);
+    
+            this.terrainMap.bind(2);
+            this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.REPEAT);
+            this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_T, this.gl.REPEAT);
+            this.popMatrix();
+
+            this.pushMatrix();
+			this.rotate(Math.PI * 270 / 180, 1, 0, 0);
+            this.scale(50, 50, 50);
+            
+			this.objects[4].display();
 			
 			this.popMatrix();
         }
         else
             this.objects[this.selectedObject].display();
 
+        this.setActiveShader(this.defaultShader);
         // ---- END Primitive drawing section
     }
 }
