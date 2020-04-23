@@ -62,7 +62,7 @@ class MyScene extends CGFscene {
         this.cyclinder = new MyCylinder(this, 16, 8);
         this.vehicle = new MyVehicle(this);
         this.cubeMap = new MyCubeMap(this);
-        this.ellipsoid = new MyEllipsoid(this, 16, 8);
+        this.gondola = new MyGondola(this, 16, 8);
 
         //------ Applied Material
         this.Material = new CGFappearance(this);
@@ -102,13 +102,13 @@ class MyScene extends CGFscene {
             'SpaceMap': 2,
         };
         //------
-        this.objects = [this.sphere, this.cyclinder, this.vehicle, this.ellipsoid];
+        this.objects = [this.sphere, this.cyclinder, this.vehicle, this.gondola];
         this.textures = [this.texture1];
         this.objectIDs = {
             'Sphere': 0,
             'Cylinder': 1,
             'Vehicle': 2,
-            'Ellipsoid': 3,
+            'Gondola': 3,
         };
         this.textureIds = {
             'Earth': 0,
