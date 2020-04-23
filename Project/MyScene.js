@@ -62,6 +62,7 @@ class MyScene extends CGFscene {
         this.cyclinder = new MyCylinder(this, 30);
         this.vehicle = new MyVehicle(this);
         this.cubeMap = new MyCubeMap(this);
+        this.terrain = new MyTerrain(this, 50);
 
         //------ Applied Material
         this.Material = new CGFappearance(this);
@@ -76,6 +77,13 @@ class MyScene extends CGFscene {
 
         //------ Textures
         this.texture1 = new CGFtexture(this, 'images/earth.jpg');
+        //-------
+
+		//this.terrainTexture = new CGFtexture(this, "textures/waterTex.jpg");
+		//this.terrainMap = new CGFtexture(this,"textures/waterMap.jpg");
+        //------ Shaders
+        this.terrainShader = new CGFshader(this.gl, "shaders/terrain.vert", "shaders/terrain.frag");
+        this.terrainShader.setUniformsValues({ uSampler2: 1 });
         //-------
 
         //------ Background Material
@@ -101,12 +109,13 @@ class MyScene extends CGFscene {
             'SpaceMap': 2,
         };
         //------
-        this.objects = [this.sphere, this.cyclinder, this.vehicle];
+        this.objects = [this.sphere, this.cyclinder, this.vehicle, this.terrain];
         this.textures = [this.texture1];
         this.objectIDs = {
             'Sphere': 0,
             'Cylinder': 1,
             'Vehicle': 2,
+            'Terrain': 3,
         };
         this.textureIds = {
             'Earth': 0,
@@ -179,8 +188,17 @@ class MyScene extends CGFscene {
             this.objects[this.selectedObject].enableNormalViz();
         else
             this.objects[this.selectedObject].disableNormalViz();
-
-        this.objects[this.selectedObject].display();
+        
+        if(this.selectedObject == 3){
+            this.pushMatrix();
+			
+			this.scale(25, 25, 25);
+			this.objects[3].display();
+			
+			this.popMatrix();
+        }
+        else
+            this.objects[this.selectedObject].display();
 
         // ---- END Primitive drawing section
     }
