@@ -1,7 +1,8 @@
 class MyCylinder extends CGFobject {
-	constructor(scene, slices) {
+	constructor(scene, slices, stacks) {
 		super(scene);
 		this.slices = slices;
+		this.stacks = stacks;
 
 		this.initBuffers();
 	}
@@ -29,6 +30,14 @@ class MyCylinder extends CGFobject {
 			theta += thetaInc;
 		}
 
+
+		for(let i = 0; i<=this.stacks;i++){
+            let t=(this.stacks-i)/this.stacks;
+            for(let j = 0; j < this.slices;j++){
+                let s=(this.slices-1-j)/(this.slices-1);
+                this.texCoords.push(s*this.sr,t*this.tr);
+            }
+        }
 
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
