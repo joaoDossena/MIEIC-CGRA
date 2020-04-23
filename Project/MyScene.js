@@ -23,12 +23,12 @@ class MyScene extends CGFscene {
         }
         if (this.gui.isKeyPressed("KeyA")) {
             text += " A ";
-            this.vehicle.turn([5]);
+            this.vehicle.turn(5);
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyD")) {
             text += " D ";
-            this.vehicle.turn([-5]);
+            this.vehicle.turn(-5);
             keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyR")) {
@@ -68,6 +68,7 @@ class MyScene extends CGFscene {
         this.Material.setAmbient(0.1, 0.1, 0.1, 1);
         this.Material.setDiffuse(0.9, 0.9, 0.9, 1);
         this.Material.setSpecular(0.1, 0.1, 0.1, 1);
+        this.Material.setEmission( 0.3, 0.3, 0.3, 1 );
         this.Material.setShininess(10.0);
         this.Material.loadTexture('images/earth.jpg');
         this.Material.setTextureWrap('REPEAT', 'REPEAT');
@@ -79,9 +80,10 @@ class MyScene extends CGFscene {
 
         //------ Background Material
         this.backgroundMaterial = new CGFappearance(this);
-        this.backgroundMaterial.setAmbient(0.1, 0.1, 0.1, 1);
-        this.backgroundMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.backgroundMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.backgroundMaterial.setAmbient(0.8, 0.8, 0.8, 1);
+        this.backgroundMaterial.setDiffuse(0, 0, 0, 1);
+        this.backgroundMaterial.setSpecular(0, 0, 0, 1);
+        this.backgroundMaterial.setEmission( 1, 1, 1, 1 );
         this.backgroundMaterial.setShininess(10.0);
         this.backgroundMaterial.loadTexture('images/cubemap.png');
         this.backgroundMaterial.setTextureWrap('REPEAT', 'REPEAT');
@@ -158,7 +160,7 @@ class MyScene extends CGFscene {
         this.loadIdentity();
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
-
+        this.lights[0].update();
         // Draw axis
         if (this.displayAxis)
             this.axis.display();

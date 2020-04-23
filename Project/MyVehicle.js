@@ -7,6 +7,9 @@
 class MyVehicle extends CGFobject {
 	constructor(scene) {
 		super(scene);
+		/*this.cylinder = new MyCylinder(scene);
+		this.frontSphere = new MySphere(scene);
+		this.backSphere = new MySphere(scene);*/
 		this.vehicle = new MyTriangle(scene);
 		this.angle = 0;
 		this.velocity = [0, 0, 0];
@@ -25,6 +28,8 @@ class MyVehicle extends CGFobject {
 		//------	Speed Limit
 		if(this.velocity[0]>2){this.velocity[0]=2;}
 		if(this.velocity[2]>2){this.velocity[2]=2;}
+		if(this.velocity[0]<0){this.velocity[0]=0;}
+		if(this.velocity[2]<0){this.velocity[2]=0;}
 	}
 	reset(){
 		this.angle = 0;
@@ -48,5 +53,10 @@ class MyVehicle extends CGFobject {
 		this.scene.rotate(Math.PI * 45 / 180, 0, 0, 1);
 		this.vehicle.display();
 		this.scene.popMatrix();
+/*
+		this.scene.pushMatrix();
+		this.scene.rotate(Math.PI * 90 / 180, 0, 0, 1);
+		this.frontSphere.display();
+		this.scene.popMatrix();*/
 	}
 } 
