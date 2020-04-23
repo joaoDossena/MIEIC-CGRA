@@ -3,24 +3,16 @@ class MyAirship extends CGFobject
 	constructor(scene, slices, stacks)
 	{
 		super(scene);
-		this.gondola = new MyGondola(scene, 16, 8);
-		this.balloon = new MyEllipsoid(scene, 16, 8);
+		this.gondola = new MyGondola(scene, slices, stacks);
+		this.balloon = new MyEllipsoid(scene, slices, stacks);
 
-		this.leftTurbine = new MyEllipsoid(scene, 8, 4);
-		this.rightTurbine = new MyEllipsoid(scene, 8, 4);
+		this.leftTurbine = new MyEllipsoid(scene, slices/2, stacks/2);
+		this.rightTurbine = new MyEllipsoid(scene, slices/2, stacks/2);
 
-		this.topWingTriangle = new MyTriangle(scene);
-		this.topWingSquare = new MyQuad(scene);
-
-		this.leftWingTriangle = new MyTriangle(scene);
-		this.leftWingSquare = new MyQuad(scene);
-
-		this.bottomWingTriangle = new MyTriangle(scene);
-		this.bottomWingSquare = new MyQuad(scene);
-
-		this.rightWingTriangle  = new MyTriangle(scene);
-		this.rightWingSquare = new MyQuad(scene);
-
+		this.topWing = new MyQuad(scene);
+		this.leftWing = new MyQuad(scene);
+		this.bottomWing = new MyQuad(scene);
+		this.rightWing = new MyQuad(scene);
 
 	}
 
@@ -52,11 +44,37 @@ class MyAirship extends CGFobject
 		this.scene.popMatrix();
 
 		//Top Wing
+		this.scene.pushMatrix();
+		this.scene.translate(0, 0.5, -1.5);
+		this.scene.rotate(Math.PI/2, 0, 1, 0);
+		this.scene.scale(0.7, 0.7, 0.7);
+		this.topWing.display();
+		this.scene.popMatrix();
 
 		//Left Wing
+		this.scene.pushMatrix();
+		this.scene.translate(0.5, 0, -1.5);
+		this.scene.rotate(Math.PI/2, 1, 0, 0);
+		this.scene.scale(0.7, 0.7, 0.7);
+		this.leftWing.display();
+		this.scene.popMatrix();
 
 		//Bottom Wing
+		this.scene.pushMatrix();
+		this.scene.translate(0, -0.5, -1.5);
+		this.scene.rotate(Math.PI/2, 0, 1, 0);
+		this.scene.scale(0.7, 0.7, 0.7);
+		this.bottomWing.display();
+		this.scene.popMatrix();
+
 
 		//Right Wing
+		this.scene.pushMatrix();
+		this.scene.translate(-0.5, 0, -1.5);
+		this.scene.rotate(Math.PI/2, 1, 0, 0);
+		this.scene.scale(0.7, 0.7, 0.7);
+		this.rightWing.display();
+		this.scene.popMatrix();
 	}
+
 }

@@ -7,7 +7,7 @@
 class MyVehicle extends CGFobject {
 	constructor(scene, slices, stacks) {
 		super(scene);
-		this.airship = new MyAirship(scene, slices, stacks)
+		this.airship = new MyAirship(scene, slices, stacks);
 		this.angle = 0;
 		this.velocity = [0, 0, 0];
 		this.position = [0, 0, 0];
