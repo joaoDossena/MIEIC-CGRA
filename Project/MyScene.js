@@ -59,8 +59,8 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
-        this.cyclinder = new MyCylinder(this, 16, 8);
-        this.vehicle = new MyVehicle(this);
+        this.cylinder = new MyCylinder(this, 16, 8);
+        this.vehicle = new MyVehicle(this, 16, 8);
         this.cubeMap = new MyCubeMap(this);
         this.terrain = new MyTerrain(this, 20);
         this.gondola = new MyGondola(this, 16, 8);
@@ -112,13 +112,12 @@ class MyScene extends CGFscene {
             'SpaceMap': 2,
         };
         //------
-        this.objects = [this.sphere, this.cyclinder, this.vehicle, this.gondola, this.terrain];
+        this.objects = [this.sphere, this.cylinder, this.vehicle, this.terrain];
         this.textures = [this.texture1];
         this.objectIDs = {
             'Sphere': 0,
             'Cylinder': 1,
             'Vehicle': 2,
-            'Gondola': 3,
             'Terrain': 4,
         };
         this.textureIds = {
