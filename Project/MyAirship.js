@@ -9,8 +9,8 @@ class MyAirship extends CGFobject
 		this.leftTurbine = new MyEllipsoid(scene, slices/2, stacks/2);
 		this.rightTurbine = new MyEllipsoid(scene, slices/2, stacks/2);
 
-		this.topWing = new MyQuad(scene);
-		this.leftWing = new MyQuad(scene);
+		this.topWing = new MySquare(scene);
+		this.leftWing = new MySquare(scene);
 		this.bottomWing = new MyQuad(scene);
 		this.rightWing = new MyQuad(scene);
 

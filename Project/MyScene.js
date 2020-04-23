@@ -2,6 +2,7 @@
 * MyScene
 * @constructor
 */
+
 class MyScene extends CGFscene {
     constructor() {
         super();
@@ -118,7 +119,7 @@ class MyScene extends CGFscene {
             'Sphere': 0,
             'Cylinder': 1,
             'Vehicle': 2,
-            'Terrain': 4,
+            'Terrain': 3,
         };
         this.textureIds = {
             'Earth': 0,
@@ -202,7 +203,7 @@ class MyScene extends CGFscene {
         else
             this.objects[this.selectedObject].disableNormalViz();
         
-        if(this.selectedObject == 4){
+        if(this.selectedObject == 3){
             this.setActiveShader(this.terrainShader);
             this.pushMatrix();
             
@@ -219,7 +220,7 @@ class MyScene extends CGFscene {
 			this.rotate(Math.PI * 270 / 180, 1, 0, 0);
             this.scale(50, 50, 50);
             
-			this.objects[4].display();
+			this.objects[3].display();
 			
 			this.popMatrix();
         }
@@ -227,6 +228,7 @@ class MyScene extends CGFscene {
             this.objects[this.selectedObject].display();
 
         this.setActiveShader(this.defaultShader);
+    
         // ---- END Primitive drawing section
     }
 }

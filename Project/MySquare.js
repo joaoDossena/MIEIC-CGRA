@@ -3,7 +3,7 @@
  * @constructor
  * @param scene - Reference to MyScene object
  */
-class MyQuad extends CGFobject {
+class MySquare extends CGFobject {
 	constructor(scene, coords) {
 		super(scene);
 		this.initBuffers();
@@ -22,7 +22,10 @@ class MyQuad extends CGFobject {
 		//Counter-clockwise reference of vertices
 		this.indices = [
 			0, 1, 2,
-			1, 3, 2
+			1, 3, 2,
+
+			2, 1, 0,
+			2, 3, 1
 		];
 
 		//Facing Z positive
@@ -62,4 +65,6 @@ class MyQuad extends CGFobject {
 		this.texCoords = [...coords];
 		this.updateTexCoordsGLBuffers();
 	}
+
 }
+
