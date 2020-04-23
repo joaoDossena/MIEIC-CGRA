@@ -13,22 +13,24 @@ class MyGondola extends CGFobject
 		//Front Sphere:
 		this.scene.pushMatrix();
 		this.scene.scale(0.5, 0.5, 0.5);
-		this.scene.translate(0, -2, 2);
+		this.scene.translate(0, -3, 3);
 		this.frontSphere.display();
 		this.scene.popMatrix();
 
 
 		//Front Sphere:
 		this.scene.pushMatrix();
-
+		this.scene.translate(0, -1.5, -1.5);
+		this.scene.rotate(Math.PI/2, 1, 0, 0);
+		this.scene.scale(0.5, 3, 0.5);
 		this.cylinder.display();
 		this.scene.popMatrix();		
 
 
 		//Front Sphere:
 		this.scene.pushMatrix();
-		this.scene.scale(1, 1, 0.5);
-		this.scene.translate(0, -2, -2);
+		this.scene.scale(0.5, 0.5, 0.5);
+		this.scene.translate(0, -3, -3);
 		this.backSphere.display();
 		this.scene.popMatrix();
 	}
