@@ -49,8 +49,6 @@ class MyVehicle extends CGFobject {
 		*/
 		this.airship.display();
 		this.scene.popMatrix();
-
-		
 	}
 
 } 
