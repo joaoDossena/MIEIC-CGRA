@@ -18,6 +18,7 @@ class MyVehicle extends CGFobject {
 	}
 	turn(val){
 		this.angle += val;
+		this.airship.rudderAngle = val*5;
 	}
 	accelerate(val){
 		this.speed += val;

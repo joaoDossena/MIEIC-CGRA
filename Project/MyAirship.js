@@ -14,6 +14,7 @@ class MyAirship extends CGFobject
 		this.bottomWing = new MySquare(scene);
 		this.rightWing = new MySquare(scene);
 
+		this.rudderAngle = 0;
 	}
 
 
@@ -48,6 +49,7 @@ class MyAirship extends CGFobject
 		this.scene.translate(0, 0.5, -1.5);
 		this.scene.rotate(Math.PI/2, 0, 1, 0);
 		this.scene.scale(0.7, 0.7, 0.7);
+		this.scene.rotate(Math.PI * this.rudderAngle/180, 0, 1, 0);
 		this.topWing.display();
 		this.scene.popMatrix();
 
@@ -64,6 +66,7 @@ class MyAirship extends CGFobject
 		this.scene.translate(0, -0.5, -1.5);
 		this.scene.rotate(Math.PI/2, 0, 1, 0);
 		this.scene.scale(0.7, 0.7, 0.7);
+		this.scene.rotate(Math.PI * this.rudderAngle/180, 0, 1, 0);
 		this.bottomWing.display();
 		this.scene.popMatrix();
 
@@ -75,6 +78,9 @@ class MyAirship extends CGFobject
 		this.scene.scale(0.7, 0.7, 0.7);
 		this.rightWing.display();
 		this.scene.popMatrix();
+
+
+		this.rudderAngle *= 0.9;
 	}
 
 }
