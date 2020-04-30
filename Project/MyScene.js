@@ -6,10 +6,11 @@
 class MyScene extends CGFscene {
     constructor() {
         super();
-
+        this.lastTime = 0;
+        this.lastTimeSupply = -1000;
     }
     // Check for key codes e.g. in https://keycode.info/
-    checkKeys() {
+    checkKeys(t) {
         var text = "Keys pressed: ";
         var keysPressed = false;
         if (this.gui.isKeyPressed("KeyW")) {
@@ -34,7 +35,17 @@ class MyScene extends CGFscene {
         }
         if (this.gui.isKeyPressed("KeyR")) {
             text += " R ";
+            this.resetSupplies();
             this.vehicle.reset();
+            keysPressed = true;
+        }
+        if  (this.gui.isKeyPressed("KeyL")){
+            text += " L ";
+            if(this.selectedSupply < 5 && (t - this.lastTimeSupply) > 750){
+                this.supplies[this.selectedSupply].drop(this.vehicle.position);
+                this.selectedSupply ++;
+                this.lastTimeSupply = t;
+            }
             keysPressed = true;
         }
         if (keysPressed)
@@ -124,10 +135,13 @@ class MyScene extends CGFscene {
         this.textureIds = {
             'Earth': 0,
         };
+
+        this.supplies = [new MySupply(this),new MySupply(this),new MySupply(this),new MySupply(this),new MySupply(this)];
         //Objects connected to MyInterface
         this.selectedBackground = 0;
         this.selectedTexture = 0;
         this.selectedObject = 0;
+        this.selectedSupply = 0;
         this.wireframe = false;
         this.displayAxis = true;
         this.displayNormals = false;
@@ -167,9 +181,23 @@ class MyScene extends CGFscene {
     // Show/hide shader code
 
     // called periodically (as per setUpdatePeriod() in init())
-    update(t) {
-        this.checkKeys();
+    update(t) { //t is in ms
+        if(this.lastTime == 0){
+            this.lastTime = t;
+        }
+        this.elapseTime = t-this.lastTime;
+        this.lastTime = t;
+        this.checkKeys(t);
         this.vehicle.update();
+        for(var i = 0; i < this.selectedSupply; i++){
+            this.supplies[i].update(this.elapseTime);
+        }
+    }
+    resetSupplies(){
+        for(var i = 0; i < this.selectedSupply; i++){
+            this.supplies[i].reset();
+        }
+        this.selectedSupply = 0;
     }
 
     display() {
@@ -218,14 +246,19 @@ class MyScene extends CGFscene {
 
             this.pushMatrix();
 			this.rotate(Math.PI * 270 / 180, 1, 0, 0);
-            this.scale(50, 50, 50);
+            this.scale(50, 50, 8);
             
 			this.objects[3].display();
 			
 			this.popMatrix();
         }
-        else
+        else{
             this.objects[this.selectedObject].display();
+        }
+            
+        for(var i = 0; i < 5; i++){
+            this.supplies[i].display();
+        }
 
         this.setActiveShader(this.defaultShader);
     
