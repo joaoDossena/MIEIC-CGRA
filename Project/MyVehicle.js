@@ -9,28 +9,26 @@ class MyVehicle extends CGFobject {
 		super(scene);
 		this.airship = new MyAirship(scene, slices, stacks);
 		this.angle = 0;
-		this.velocity = [0, 0, 0];
+		this.speed = 0;
 		this.position = [0, 0, 0];
 	}
 	update(){
-		this.position[0] += this.velocity[0];
-		this.position[2] += this.velocity[2];
+		this.position[0] += this.speed*Math.sin(this.angle*Math.PI/180.0);
+		this.position[2] += this.speed*Math.cos(this.angle*Math.PI/180.0);
 	}
 	turn(val){
 		this.angle += val;
 	}
 	accelerate(val){
-		this.velocity[0] += val*Math.sin(this.angle*Math.PI/180.0);
-		this.velocity[2] += val*Math.cos(this.angle*Math.PI/180.0);
+		this.speed += val;
 		//------	Speed Limit
-		if(this.velocity[0]>2){this.velocity[0]=2;}
-		if(this.velocity[2]>2){this.velocity[2]=2;}
-		if(this.velocity[0]<0){this.velocity[0]=0;}
-		if(this.velocity[2]<0){this.velocity[2]=0;}
+		if(this.speed >2){this.speed=2;}
+		if(this.speed <0){this.speed=0;}
+
 	}
 	reset(){
 		this.angle = 0;
-		this.velocity = [0, 0, 0];
+		this.speed = 0;
 		this.position = [0, 0, 0];
 		this.scene.pushMatrix();
 		this.scene.translate(0, 0, -Math.sqrt(2)/2);
