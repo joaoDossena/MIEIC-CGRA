@@ -6,14 +6,15 @@ class MyAirship extends CGFobject
 		this.gondola = new MyGondola(scene, slices, stacks);
 		this.balloon = new MyEllipsoid(scene, slices, stacks);
 
-		this.leftTurbine = new MyEllipsoid(scene, slices/2, stacks/2);
-		this.rightTurbine = new MyEllipsoid(scene, slices/2, stacks/2);
+		this.leftTurbine = new MyTurbine(scene, slices/2, stacks/2);
+		this.rightTurbine = new MyTurbine(scene, slices/2, stacks/2);
 
 		this.topWing = new MySquare(scene);
 		this.leftWing = new MySquare(scene);
-		this.bottomWing = new MyQuad(scene);
-		this.rightWing = new MyQuad(scene);
+		this.bottomWing = new MySquare(scene);
+		this.rightWing = new MySquare(scene);
 
+		this.rudderAngle = 0;
 	}
 
 
@@ -31,14 +32,14 @@ class MyAirship extends CGFobject
 
 		//Left Turbine
 		this.scene.pushMatrix();
-		this.scene.translate(0.25, -1, -0.75);
+		this.scene.translate(0.25, -1, -0.9);
 		this.scene.scale(0.1, 0.1, 0.1);
 		this.leftTurbine.display();
 		this.scene.popMatrix();
 
 		//Right Turbine
 		this.scene.pushMatrix();
-		this.scene.translate(-0.25, -1, -0.75);
+		this.scene.translate(-0.25, -1, -0.9);
 		this.scene.scale(0.1, 0.1, 0.1);
 		this.rightTurbine.display();
 		this.scene.popMatrix();
@@ -48,6 +49,7 @@ class MyAirship extends CGFobject
 		this.scene.translate(0, 0.5, -1.5);
 		this.scene.rotate(Math.PI/2, 0, 1, 0);
 		this.scene.scale(0.7, 0.7, 0.7);
+		this.scene.rotate(Math.PI * this.rudderAngle/180, 0, 1, 0);
 		this.topWing.display();
 		this.scene.popMatrix();
 
@@ -64,6 +66,7 @@ class MyAirship extends CGFobject
 		this.scene.translate(0, -0.5, -1.5);
 		this.scene.rotate(Math.PI/2, 0, 1, 0);
 		this.scene.scale(0.7, 0.7, 0.7);
+		this.scene.rotate(Math.PI * this.rudderAngle/180, 0, 1, 0);
 		this.bottomWing.display();
 		this.scene.popMatrix();
 
@@ -75,6 +78,9 @@ class MyAirship extends CGFobject
 		this.scene.scale(0.7, 0.7, 0.7);
 		this.rightWing.display();
 		this.scene.popMatrix();
+
+
+		this.rudderAngle *= 0.9;
 	}
 
 }
