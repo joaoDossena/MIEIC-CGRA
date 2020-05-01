@@ -79,7 +79,7 @@ class MyAirship extends CGFobject
 		this.rightWing.display();
 		this.scene.popMatrix();
 
-
+		//Puts rudder back in position
 		this.rudderAngle *= 0.9;
 	}
 
