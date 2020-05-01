@@ -10,7 +10,7 @@ class MyVehicle extends CGFobject {
 		this.airship = new MyAirship(scene, slices, stacks);
 		this.angle = 0;
 		this.speed = 0;
-		this.position = [0, 0, 0];
+		this.position = [0, 10, 0];
 		this.autopilot = false;
 	}
 	update(){
@@ -35,12 +35,12 @@ class MyVehicle extends CGFobject {
 	reset(){
 		this.angle = 0;
 		this.speed = 0;
-		this.position = [0, 0, 0];
+		this.position = [0, 10, 0];
 		this.scene.pushMatrix();
 		this.scene.translate(0, 0, -Math.sqrt(2)/2);
 		this.scene.rotate(Math.PI * 270 / 180, 1, 0, 0);
 		this.scene.rotate(Math.PI * 45 / 180, 0, 0, 1);
-		this.gondola.display();
+		//this.gondola.display();
 		this.scene.popMatrix();
 	}
 	display(){

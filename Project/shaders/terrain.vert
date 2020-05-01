@@ -15,7 +15,7 @@ void main() {
 
 	vTextureCoord = aTextureCoord;
 	vec4 waveMap = texture2D(uSampler4, vec2(timeFactor,timeFactor)+vTextureCoord);
-	waveAmplitude = aVertexNormal*waveMap.b*0.16;	//Normal will have a constant value 1, waveMap has a maximum value of 1, for the maximum height to have 8 units, then the value 8/50 has to be used.
+	waveAmplitude = aVertexNormal*waveMap.b;	//Normal will have a constant value 1, waveMap has a maximum value of 1, for the maximum height to have 8 units, then the value 8/50 has to be used.
 
 	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + waveAmplitude, 1.0);
 
