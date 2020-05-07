@@ -6,10 +6,13 @@ class MyGondola extends CGFobject
 		this.frontSphere = new MySphere(scene, slices, stacks);
 		this.cylinder = new MyCylinder(scene, slices, stacks);
 		this.backSphere = new MySphere(scene, slices, stacks);
+		//this.scene.initDefaultMaterial();
 	}
 
 	display()
 	{
+
+		//this.scene.DefaultMaterial.apply();
 		//Front Sphere:
 		this.scene.pushMatrix();
 		this.scene.scale(0.5, 0.5, 0.5);
@@ -33,6 +36,8 @@ class MyGondola extends CGFobject
 		this.scene.translate(0, -3, -3);
 		this.backSphere.display();
 		this.scene.popMatrix();
+
+
 	}
 
 }

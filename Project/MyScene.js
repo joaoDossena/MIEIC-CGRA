@@ -182,6 +182,16 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
+    initDefaultMaterial(){
+        this.DefaultMaterial = new CGFappearance(this);
+        this.DefaultMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.DefaultMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.DefaultMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.DefaultMaterial.setEmission( 0.3, 0.3, 0.3, 1 );
+        this.DefaultMaterial.setShininess(10.0);
+        this.DefaultMaterial.loadTexture('images/nasa.png');
+        this.DefaultMaterial.setTextureWrap('REPEAT', 'REPEAT');
+    }
     onWireframeChanged(option) {
         if (option)
             this.objects[this.selectedObject].setLineMode();

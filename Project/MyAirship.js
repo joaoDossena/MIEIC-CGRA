@@ -14,12 +14,16 @@ class MyAirship extends CGFobject
 		this.bottomWing = new MySquare(scene);
 		this.rightWing = new MySquare(scene);
 
+		this.flag = new MyPlane(scene,50);
+
 		this.rudderAngle = 0;
+		this.scene.initDefaultMaterial();
 	}
 
 
 	display()
 	{
+		this.scene.DefaultMaterial.apply();
 		//Balloon
 		this.balloon.display();
 
@@ -81,6 +85,12 @@ class MyAirship extends CGFobject
 
 		//Puts rudder back in position
 		this.rudderAngle *= 0.9;
+
+
+		//Flag
+		this.scene.pushMatrix();
+		this.flag.display();
+		this.scene.popMatrix();
 	}
 
 }
