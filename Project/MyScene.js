@@ -13,42 +13,47 @@ class MyScene extends CGFscene {
     checkKeys(t) {
         var text = "Keys pressed: ";
         var keysPressed = false;
-        if (this.gui.isKeyPressed("KeyW")) {
-            text += " W ";
-            this.vehicle.accelerate(0.1*this.speedFactor);
-            keysPressed = true;
-        }
-        if (this.gui.isKeyPressed("KeyS")) {
-            text += " S ";
-            this.vehicle.accelerate(-0.1*this.speedFactor);
-            keysPressed = true;
-        }
-        if (this.gui.isKeyPressed("KeyA")) {
-            text += " A ";
-            this.vehicle.turn(5);
-            keysPressed = true;
-        }
-        if (this.gui.isKeyPressed("KeyD")) {
-            text += " D ";
-            this.vehicle.turn(-5);
-            keysPressed = true;
-        }
-        if (this.gui.isKeyPressed("KeyP")) {
-            text += " P ";
-            if(!this.vehicle.autopilot)
-            {
-                this.vehicle.autopilot = true;
-                this.vehicle.autopilot();
+        if(this.vehicle.autopilot == false) {
+            if (this.gui.isKeyPressed("KeyW")) {
+                text += " W ";
+                this.vehicle.accelerate(0.1*this.speedFactor);
+                keysPressed = true;
             }
-            keysPressed = true;
+            if (this.gui.isKeyPressed("KeyS")) {
+                text += " S ";
+                this.vehicle.accelerate(-0.1*this.speedFactor);
+                keysPressed = true;
+            }
+            if (this.gui.isKeyPressed("KeyA")) {
+                text += " A ";
+                this.vehicle.turn(5);
+                keysPressed = true;
+            }
+            if (this.gui.isKeyPressed("KeyD")) {
+                text += " D ";
+                this.vehicle.turn(-5);
+                keysPressed = true;
+            }
+        }
+
+        else {
+            //this.vehicle.autopilot();
+            this.vehicle.turn(-10);
+        }
+
+        if (this.gui.isKeyPressed("KeyP")) {
+                text += " P ";
+                this.vehicle.switchPilot();
+                keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyR")) {
             text += " R ";
             this.resetSupplies();
             this.vehicle.reset();
-            this.vehicle.autopilot = false;
             keysPressed = true;
         }
+        
+        
         if  (this.gui.isKeyPressed("KeyL")){
             text += " L ";
             if(this.selectedSupply < 5 && (t - this.lastTimeSupply) > 750){

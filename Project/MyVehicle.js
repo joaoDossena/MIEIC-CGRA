@@ -12,6 +12,7 @@ class MyVehicle extends CGFobject {
 		this.speed = 0;
 		this.position = [0, 10, 0];
 		this.autopilot = false;
+		this.center = [0, 0];
 	}
 	update(){
 		this.position[0] += this.speed*Math.sin(this.angle*Math.PI/180.0);
@@ -28,11 +29,18 @@ class MyVehicle extends CGFobject {
 		if(this.speed <0){this.speed=0;}
 
 	}
-	autopilot()
-	{
-		this.turn(5);
+	switchPilot() {
+		if(this.autopilot)
+			this.autopilot = false;
+		else
+			this.autopilot = true;
+	}
+	getCenter() {
+		this.center[0] = this.position[0] + radius * Math.sin(this.angle * Math.PI /180.0);
+		this.center[1] = this.position[2] + radius * Math.cos(this.angle * Math.PI /180.0);
 	}
 	reset(){
+        this.autopilot = false;
 		this.angle = 0;
 		this.speed = 0;
 		this.position = [0, 10, 0];
@@ -40,7 +48,6 @@ class MyVehicle extends CGFobject {
 		this.scene.translate(0, 0, -Math.sqrt(2)/2);
 		this.scene.rotate(Math.PI * 270 / 180, 1, 0, 0);
 		this.scene.rotate(Math.PI * 45 / 180, 0, 0, 1);
-		//this.gondola.display();
 		this.scene.popMatrix();
 	}
 	display(){
