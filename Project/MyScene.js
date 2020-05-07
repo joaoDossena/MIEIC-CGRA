@@ -208,7 +208,7 @@ class MyScene extends CGFscene {
         this.elapseTime = t-this.lastTime;
         this.lastTime = t;
         this.checkKeys(t);
-        this.vehicle.update();
+        this.vehicle.update(this.elapseTime);
         for(var i = 0; i < this.selectedSupply; i++){
             this.supplies[i].update(this.elapseTime);
         }

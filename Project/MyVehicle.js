@@ -13,9 +13,10 @@ class MyVehicle extends CGFobject {
 		this.position = [0, 10, 0];
 		this.autopilot = false;
 	}
-	update(){
+	update(timePassed){
 		this.position[0] += this.speed*Math.sin(this.angle*Math.PI/180.0);
 		this.position[2] += this.speed*Math.cos(this.angle*Math.PI/180.0);
+		this.airship.update(timePassed,this.speed);
 	}
 	turn(val){
 		this.angle += val;
