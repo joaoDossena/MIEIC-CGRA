@@ -11,6 +11,7 @@ class MyVehicle extends CGFobject {
 		this.angle = 0;
 		this.speed = 0;
 		this.position = [0, 10, 0];
+		this.autopilot = false;
 	}
 	update(){
 		this.position[0] += this.speed*Math.sin(this.angle*Math.PI/180.0);
@@ -26,6 +27,10 @@ class MyVehicle extends CGFobject {
 		if(this.speed >2){this.speed=2;}
 		if(this.speed <0){this.speed=0;}
 
+	}
+	autopilot()
+	{
+		this.turn(5);
 	}
 	reset(){
 		this.angle = 0;
