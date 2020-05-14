@@ -10,9 +10,10 @@ class MyVehicle extends CGFobject {
 		this.airship = new MyAirship(scene, slices, stacks);
 		this.angle = 0;
 		this.speed = 0;
+		this.angularVelocity = 72;
 		this.position = [0, 10, 0];
 		this.autopilot = false;
-		this.center = [0, 0];
+		this.center = [0, 10, 0];
 	}
 	update(timePassed){
 		this.position[0] += this.speed*Math.sin(this.angle*Math.PI/180.0);
@@ -36,9 +37,21 @@ class MyVehicle extends CGFobject {
 		else
 			this.autopilot = true;
 	}
+	autopilotUpdate(){
+		var radius = 5;
+		this.turn(5);
+		this.position[0] = this.center[0] - radius * Math.cos(this.angle * Math.PI / 180); 
+		this.position[2] = this.center[2] + radius * Math.sin(this.angle * Math.PI / 180);
+	}
 	getCenter() {
-		this.center[0] = this.position[0] + radius * Math.sin(this.angle * Math.PI /180.0);
-		this.center[1] = this.position[2] + radius * Math.cos(this.angle * Math.PI /180.0);
+        var radius = 5;
+
+        var z = Math.cos(this.angle);
+        var x = -1 * Math.sin(this.angle);
+
+        // Calcular centro
+        this.center[0] = this.position[0] + radius * x;
+        this.center[2] = this.position[2] + radius * z;
 	}
 	reset(){
         this.autopilot = false;
