@@ -91,6 +91,7 @@ class MyScene extends CGFscene {
         this.cubeMap = new MyCubeMap(this);
         this.terrain = new MyTerrain(this, 20);
         this.gondola = new MyGondola(this, 16, 8);
+        //this.billboard = new MyBillboard()
 
         //------ Applied Material
         this.Material = new CGFappearance(this);
@@ -194,7 +195,7 @@ class MyScene extends CGFscene {
         this.DefaultMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.DefaultMaterial.setEmission( 0.3, 0.3, 0.3, 1 );
         this.DefaultMaterial.setShininess(10.0);
-        this.DefaultMaterial.loadTexture('images/nasa.png');
+        this.DefaultMaterial.loadTexture('images/SovietNasa.png');
         this.DefaultMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }
     onWireframeChanged(option) {

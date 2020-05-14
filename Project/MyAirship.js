@@ -25,7 +25,7 @@ class MyAirship extends CGFobject {
 		this.initMaterials();
 
 		this.flagShader = new CGFshader(scene.gl, "shaders/flag.vert", "shaders/flag.frag");
-        this.flagTexture = new CGFtexture(this, "images/nasa.png");
+        //this.flagTexture = new CGFtexture(this, "images/nasa.png");
 		this.flagShader.setUniformsValues({flagTexture: 5 });
 
         this.flagShader.setUniformsValues({speed: 7});
@@ -40,7 +40,7 @@ class MyAirship extends CGFobject {
         this.flagTex.setDiffuse(0.9, 0.9, 0.9, 1);
         this.flagTex.setSpecular(0.1, 0.1, 0.1, 1);
         this.flagTex.setShininess(10.0);
-        this.flagTex.loadTexture('images/nasa.png');
+        this.flagTex.loadTexture('images/SovietUnion.jpg');
         this.flagTex.setTextureWrap('REPEAT', 'REPEAT');
 	}
 	update(timePassed, currentSpeed){
@@ -117,20 +117,21 @@ class MyAirship extends CGFobject {
 		//Flag front
 		
 		this.scene.setActiveShader(this.flagShader);
+		this.flagTex.apply();
 		this.scene.pushMatrix();
-		this.flagTexture.bind(5);
+		//this.flagTexture.bind(5);
 		this.scene.translate(0, 0, -4.3);
 		this.scene.rotate(Math.PI * -90 / 180, 0, 1, 0);
 		this.scene.scale(5, 2, 4);
 		this.flag1.display();
 		this.scene.popMatrix();
-		this.scene.setActiveShader(this.scene.defaultShader);
+		//this.scene.setActiveShader(this.scene.defaultShader);
 		
 		//Flag back
 		
-		this.scene.setActiveShader(this.flagShader);
+		//this.scene.setActiveShader(this.flagShader);
 		this.scene.pushMatrix();
-		this.flagTexture.bind(5);
+		//this.flagTexture.bind(5);
 		this.scene.translate(0, 0, -4.3);
 		this.scene.rotate(Math.PI * 90 / 180, 0, 1, 0);
 		this.scene.scale(5, 2, 4);
