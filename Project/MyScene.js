@@ -52,6 +52,7 @@ class MyScene extends CGFscene {
             text += " R ";
             this.resetSupplies();
             this.vehicle.reset();
+            this.billboard.reset();
             keysPressed = true;
         }
         
@@ -218,6 +219,7 @@ class MyScene extends CGFscene {
         this.lastTime = t;
         this.checkKeys(t);
         this.vehicle.update(this.elapseTime);
+        this.billboard.update(this.selectedSupply);
         for(var i = 0; i < this.selectedSupply; i++){
             this.supplies[i].update(this.elapseTime);
         }
@@ -281,13 +283,17 @@ class MyScene extends CGFscene {
 			
 			this.popMatrix();
         }
+        else if(this.selectedObject == 2){
+            this.objects[this.selectedObject].display();
+            for(var i = 0; i < 5; i++){
+                this.supplies[i].display();
+            }
+        }
         else{
             this.objects[this.selectedObject].display();
         }
-            
-        for(var i = 0; i < 5; i++){
-            this.supplies[i].display();
-        }
+        
+
 
         this.setActiveShader(this.defaultShader);
     
