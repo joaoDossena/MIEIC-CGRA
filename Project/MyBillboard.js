@@ -11,22 +11,30 @@ class MyBillboard extends CGFobject {
         this.progressBar = new MySquare(scene);
         this.rod = new MyCylinder(scene, 10, 10);
         this.initMaterials();
-
         this.suppliesDelivered = 0;
+        //this.progressPosition = (1.2/5.0) * suppliesDelivered -0.6;
         this.progressBarShader = new CGFshader(scene.gl, "shaders/progressBar.vert", "shaders/progressBar.frag");
         this.progressBarShader.setUniformsValues({suppliesDelivered: this.suppliesDelivered});
+        this.progressBarShader.setUniformsValues({progressPosition: (1.2/5.0) * this.suppliesDelivered -0.6});
+
         
         
     }
 	update(selectedSupply){
         this.suppliesDelivered = selectedSupply;
         this.progressBarShader.setUniformsValues({suppliesDelivered: this.suppliesDelivered});
+        this.progressBarShader.setUniformsValues({progressPosition: (1.2/5.0) *this.suppliesDelivered -0.6});
+
+
 
 	}
     
 	reset(){
         this.suppliesDelivered = 0;
         this.progressBarShader.setUniformsValues({suppliesDelivered: this.suppliesDelivered});
+        this.progressBarShader.setUniformsValues({progressPosition: (1.2/5.0) * this.suppliesDelivered -0.6});
+
+
 
     }
     initMaterials(){
