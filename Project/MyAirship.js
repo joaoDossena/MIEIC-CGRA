@@ -33,7 +33,6 @@ class MyAirship extends CGFobject {
 		
 
 	}
-
 	initMaterials(){
 		this.flagTex = new CGFappearance(this.scene);
         this.flagTex.setAmbient(0.1, 0.1, 0.1, 1);
@@ -41,7 +40,16 @@ class MyAirship extends CGFobject {
         this.flagTex.setSpecular(0.1, 0.1, 0.1, 1);
         this.flagTex.setShininess(10.0);
         this.flagTex.loadTexture('images/SovietUnion.jpg');
-        this.flagTex.setTextureWrap('REPEAT', 'REPEAT');
+		this.flagTex.setTextureWrap('REPEAT', 'REPEAT');
+		
+        this.AirShipTex = new CGFappearance(this.scene);
+        this.AirShipTex.setAmbient(0.1, 0.1, 0.1, 1);
+        this.AirShipTex.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.AirShipTex.setSpecular(0.1, 0.1, 0.1, 1);
+        this.AirShipTex.setEmission( 0.3, 0.3, 0.3, 1 );
+        this.AirShipTex.setShininess(10.0);
+        this.AirShipTex.loadTexture('images/SovietNasa.png');
+        this.AirShipTex.setTextureWrap('REPEAT', 'REPEAT');
 	}
 	update(timePassed, currentSpeed){
 		this.elapsedTime += timePassed;
@@ -51,7 +59,7 @@ class MyAirship extends CGFobject {
 	}
 
 	display() {
-		this.scene.DefaultMaterial.apply();
+		this.AirShipTex.apply();
 		//Balloon
 		this.balloon.display();
 

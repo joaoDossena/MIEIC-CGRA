@@ -8,6 +8,7 @@ class MyScene extends CGFscene {
         super();
         this.lastTime = 0;
         this.lastTimeSupply = -1000;
+        this.lastTimeAutoPilot = -1000;
     }
     // Check for key codes e.g. in https://keycode.info/
     checkKeys(t) {
@@ -44,9 +45,12 @@ class MyScene extends CGFscene {
         }
 
         if (this.gui.isKeyPressed("KeyP")) {
-                text += " P ";
+            text += " P ";
+            if((t - this.lastTimeAutoPilot) > 500){
                 this.vehicle.switchPilot();
-                keysPressed = true;
+                this.lastTimeAutoPilot = t;
+            }
+            keysPressed = true;
         }
         if (this.gui.isKeyPressed("KeyR")) {
             text += " R ";
@@ -59,7 +63,7 @@ class MyScene extends CGFscene {
         
         if  (this.gui.isKeyPressed("KeyL")){
             text += " L ";
-            if(this.selectedSupply < 5 && (t - this.lastTimeSupply) > 750){
+            if(this.selectedSupply < 5 && (t - this.lastTimeSupply) > 500){
                 this.supplies[this.selectedSupply].drop(this.vehicle.position);
                 this.selectedSupply ++;
                 this.lastTimeSupply = t;
@@ -199,7 +203,7 @@ class MyScene extends CGFscene {
         this.DefaultMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.DefaultMaterial.setEmission( 0.3, 0.3, 0.3, 1 );
         this.DefaultMaterial.setShininess(10.0);
-        this.DefaultMaterial.loadTexture('images/SovietNasa.png');
+        this.DefaultMaterial.loadTexture('images/diamond.png');
         this.DefaultMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }
     onWireframeChanged(option) {
