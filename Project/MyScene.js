@@ -52,6 +52,7 @@ class MyScene extends CGFscene {
             text += " R ";
             this.resetSupplies();
             this.vehicle.reset();
+            this.billboard.reset();
             keysPressed = true;
         }
         
@@ -93,7 +94,7 @@ class MyScene extends CGFscene {
         this.cubeMap = new MyCubeMap(this);
         this.terrain = new MyTerrain(this, 20);
         this.gondola = new MyGondola(this, 16, 8);
-        //this.billboard = new MyBillboard()
+        this.billboard = new MyBillboard(this);
 
         //------ Applied Material
         this.Material = new CGFappearance(this);
@@ -142,13 +143,14 @@ class MyScene extends CGFscene {
             'SpaceMap': 2,
         };
         //------
-        this.objects = [this.sphere, this.cylinder, this.vehicle, this.terrain];
+        this.objects = [this.sphere, this.cylinder, this.vehicle, this.terrain, this.billboard];
         this.textures = [this.texture1];
         this.objectIDs = {
             'Sphere': 0,
             'Cylinder': 1,
             'Vehicle': 2,
             'Terrain': 3,
+            'BillBoard': 4,
         };
         this.textureIds = {
             'Earth': 0,
@@ -217,6 +219,7 @@ class MyScene extends CGFscene {
         this.lastTime = t;
         this.checkKeys(t);
         this.vehicle.update(this.elapseTime);
+        this.billboard.update(this.selectedSupply);
         for(var i = 0; i < this.selectedSupply; i++){
             this.supplies[i].update(this.elapseTime);
         }
@@ -280,13 +283,17 @@ class MyScene extends CGFscene {
 			
 			this.popMatrix();
         }
+        else if(this.selectedObject == 2){
+            this.objects[this.selectedObject].display();
+            for(var i = 0; i < 5; i++){
+                this.supplies[i].display();
+            }
+        }
         else{
             this.objects[this.selectedObject].display();
         }
-            
-        for(var i = 0; i < 5; i++){
-            this.supplies[i].display();
-        }
+        
+
 
         this.setActiveShader(this.defaultShader);
     
