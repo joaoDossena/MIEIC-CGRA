@@ -37,9 +37,9 @@ class MyScene extends CGFscene {
         }
 
         else {
-            if(this.vehicle.center == [0, 10, 0])
+            if(this.vehicle.hasCenter == false)
                 this.vehicle.getCenter();
-            //this.vehicle.turn(-10);
+            
             this.vehicle.autopilotUpdate();
         }
 
