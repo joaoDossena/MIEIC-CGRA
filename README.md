@@ -1,7 +1,5 @@
 # CGRA
 
-### To do:
+## Project
 
- - [ ] TP2: Exercises 3 and 4
- - [ ] Make cube!
- - [ ] Make tables and chairs and room
+[Click here to start] (../blob/gh-pages/Project/proj-t6g10-1/Project/index.html)
