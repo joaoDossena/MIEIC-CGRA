@@ -21,7 +21,7 @@ class MySupply extends CGFobject {
         this.crateMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.crateMaterial.setEmission( 0.7, 0.7, 0.7, 1 );
         this.crateMaterial.setShininess(10.0);
-        this.crateMaterial.loadTexture('images/crate1.png');
+        this.crateMaterial.loadTexture('images/Crate1.png');
         this.crateMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
         this.diamondMaterial = new CGFappearance(this.scene);
